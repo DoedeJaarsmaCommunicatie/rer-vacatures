@@ -1,0 +1,22 @@
+{
+    "name": "elderbraum/vacatures",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Mitch Hijlkema",
+            "email": "mitchhijlkema@hotmail.com"
+        }
+    ],
+    "require": {
+        "yahnis-elsts/plugin-update-checker": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "PropertyPeople\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}

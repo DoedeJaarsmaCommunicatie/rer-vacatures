@@ -1,8 +1,7 @@
 <?php
-
 /*
 Plugin Name: Vacatures
-Description: Deze plugin voegt de nodige types en functies toe aan PropertyPeople en MakelaarsMensen.
+Description: Deze plugin voegt de nodige types en functies toe aan RealEstateRecruiters.
 Version: 1.0
 Author: Doede Jaarsma communicatie
 Author URI: https://doedejaarsma.nl
@@ -21,6 +20,12 @@ if (!defined('PP_VA_DIR')) {
 }
 
 include_once PP_VA_DIR . 'vendor/autoload.php';
+
+$updateChecker = Puc_v4_Factory::buildUpdateChecker(
+    'https://github.com/DoedeJaarsmaCommunicatie/rer-vacatures',
+    __FILE__,
+    'vacatures'
+);
 
 if (!class_exists('PropertyVacatures')) {
 	include_once PP_VA_DIR . 'src/PropertyVacatures.php';

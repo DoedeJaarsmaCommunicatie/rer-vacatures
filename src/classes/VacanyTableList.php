@@ -61,7 +61,8 @@ class VacancyTableList extends \WP_List_Table {
             'mobiel'        => 'Mobiel',
             'cv'            => 'CV',
             'vacancy'       => 'Vacature',
-            'created_at'    => 'Datum'
+            'status'        => 'Status',
+            'created_at'    => 'Datum',
         ];
     }
     

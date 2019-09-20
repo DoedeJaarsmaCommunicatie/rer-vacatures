@@ -14,8 +14,9 @@ class OpenVacature {
 	public $file;
 	public $motivation;
 	public $function;
-	
-	/**
+    public $status;
+    
+    /**
 	 * @var int $origin blog_id
 	 */
 	public $origin;
@@ -50,8 +51,9 @@ class OpenVacature {
 		$this->origin = (int) $data['origin'];
 		$this->id = $data['id'] ?? '';
 		$this->created_at = $data['created_at']?? '';
-		
-		return $this;
+        $this->status = $data['status'] ?? 'nieuw';
+        
+        return $this;
 	}
 	
 	private function getData(int $id): self
@@ -81,8 +83,10 @@ class OpenVacature {
 				'cv'        => $this->file,
 				'motivatie' => $this->motivation,
 				'origin'    => $this->origin,
-				'functie'   => $this->function
-			]
+				'functie'   => $this->function,
+                'status'        => $this->status
+            
+            ]
 		);
 		
 		if ($soll) {
@@ -117,4 +121,11 @@ class OpenVacature {
 		status_header(200);
 		return true;
 	}
+    
+    public function toggleStatus($status = 'opgepakt'): void
+    {
+        $vacancyTable = $this->_conn->prefix . PropertyDatabase::OPEN_TABLE_NAME;
+        
+        $this->_conn->update($vacancyTable, ['status' => $status ], [ 'id' => $this->id ]);
+    }
 }

@@ -11,6 +11,27 @@ try {
 	print $exception->getMessage();
 }
 
+if ( isset( $_GET[ 'action' ] ) && $_GET[ 'action' ] === 'toggle_status' && wp_verify_nonce( $_GET[ '_wpnonce' ], 'toggle_solicitation_status' ) ) {
+    if ( $vacature->status === 'opgepakt' ) {
+        $vacature->toggleStatus( 'nieuw' );
+    } else {
+        $vacature->toggleStatus();
+    }
+    
+    ?>
+    <script>
+        (function ($) {
+            var qp = new URLSearchParams(window.location.search)
+            
+            qp.delete('action');
+            qp.delete('_wpnonce');
+            
+            window.location.search = qp.toString();
+        })(jQuery)
+    </script>
+    <?php
+}
+
 $delete_args = [
     'page'          => 'vacancy-overview',
     'action'        => 'delete_solicitation',
@@ -18,7 +39,16 @@ $delete_args = [
     '_wpnonce'      => wp_create_nonce('delete_solicitation')
 ];
 
-$delete_link = esc_url(add_query_arg($delete_args, admin_url('admin.php?page=' . $_REQUEST['page'])))
+$delete_link = esc_url(add_query_arg($delete_args, admin_url('admin.php?page=' . $_REQUEST['page'])));
+
+$update_args = [
+    'page'          => 'single_solicitor',
+    'action'        => 'toggle_status',
+    'solicitor_id'  => $vacature->id,
+    '_wpnonce'      => wp_create_nonce('toggle_solicitation_status'),
+];
+
+$update_link = esc_url(add_query_arg($update_args, admin_url('admin.php')));
 ?>
 	<div class="wrap">
 		<h2><?php _e('Sollicitatie', 'ppmm'); ?></h2>
@@ -72,6 +102,18 @@ $delete_link = esc_url(add_query_arg($delete_args, admin_url('admin.php?page=' .
 					</a>
 				</div>
 			</div>
+            <div class="postbox">
+                <h2 class="hndle">
+                    <span>
+                        Status: <?= $vacature->status ?>
+                    </span>
+                </h2>
+                <div class="inside">
+                    <a href="<?= $update_link ?>">
+                        <?= __('Status wisselen') ?>
+                    </a>
+                </div>
+            </div>
 			<div class="postbox">
 				<h2 class="hndle">
 					<span>

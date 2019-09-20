@@ -75,7 +75,7 @@ class PropertyAdminPage
 	
 	public function single_vacancy()
 	{
-		include_once PP_VA_DIR . '/src/single-sollicitatie.php';
+		include_once PP_VA_DIR . '/src/views/single-sollicitatie.php';
 	}
 	
 	public function open_soll_list()

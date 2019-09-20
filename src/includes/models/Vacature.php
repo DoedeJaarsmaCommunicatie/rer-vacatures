@@ -13,6 +13,7 @@ class Vacature {
 	public $phone;
 	public $file;
 	public $motivation;
+	public $status;
 	
 	/**
 	 * @var int $origin
@@ -45,7 +46,6 @@ class Vacature {
 		if(is_int($data)) {
 			$this->getData($data);
 		}
-		
 	}
 	
 	private function spreadArray(array $data): self
@@ -60,6 +60,7 @@ class Vacature {
 		$this->vacancy = (int) $data['vacancy'];
 		$this->id = $data['id'] ?? '';
 		$this->created_at = $data['created_at'] ?? '';
+		$this->status = $data['status'] ?? 'nieuw';
 		if ($this->vacancy) {
 			$this->post = get_post($this->vacancy);
 		}
@@ -93,6 +94,7 @@ class Vacature {
 				'motivatie'     => $this->motivation,
 				'origin'        => $this->origin,
 				'vacancy'       => $this->vacancy,
+                'status'        => $this->status
 			]
 		);
 		
@@ -134,4 +136,11 @@ class Vacature {
 		status_header(200);
 		return true;
 	}
+	
+	public function toggleStatus($status = 'opgepakt'): void
+    {
+	    $vacancyTable = $this->_conn->prefix . PropertyDatabase::TABLE_NAME;
+	    
+	    $this->_conn->update($vacancyTable, ['status' => $status ], [ 'id' => $this->id ]);
+    }
 }

@@ -20,6 +20,7 @@ class SollicitorTableList extends \WP_List_Table
     public function prepare_items()
     {
         $seach_key = isset($_REQUEST['s']) ? wp_unslash($_REQUEST['s']) : '';
+        $this->handle_table_actions();
         
         $columns = $this->get_columns();
         $hidden = $this->get_hidden_columns();
@@ -55,8 +56,8 @@ class SollicitorTableList extends \WP_List_Table
             'cv'            => 'CV',
             'functie'       => 'Functie',
             'motivatie'     => 'Motivatie',
-            'created_at'    => 'Datum'
-
+            'created_at'    => 'Datum',
+            'status'        => 'Status',
         ];
     }
     
@@ -143,13 +144,44 @@ class SollicitorTableList extends \WP_List_Table
     public function get_bulk_actions()
     {
         return [
-            'bulk-delete'   => __('Delete')
+            'bulk-delete'   => __('Delete'),
+            'bulk-toggle-status' => __('Toggle Status')
         ];
     }
     
     public function handle_table_actions()
     {
         $this->handle_bulk_delete();
+        $this->handle_bulk_toggle();
+    }
+    
+    private function handle_bulk_toggle()
+    {
+        if(
+            ( isset($_REQUEST['action']) && $_REQUEST['action'] === 'bulk-toggle-status' ) ||
+            ( isset($_REQUEST['action2']) && $_REQUEST['action2'] === 'bulk-toggle-status')
+        ) {
+            $nonce = wp_unslash($_REQUEST['_wpnonce']);
+            
+            if (!wp_verify_nonce($nonce, 'bulk-' . $this->_args['plural'])) {
+                $this->invalid_nonce_redirect();
+                return;
+            }
+            
+            
+            foreach ( $_REQUEST['solicitations'] as $id ) {
+                $v = new OpenVacature((int) $id);
+                switch ($v->status) {
+                    case 'opgepakt':
+                        $v->toggleStatus('nieuw');
+                        break;
+                    default:
+                        $v->toggleStatus();
+                        break;
+                }
+            }
+            
+        }
     }
     
     private function handle_bulk_delete()

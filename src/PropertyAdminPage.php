@@ -73,8 +73,10 @@ class PropertyAdminPage
 		<?php
 	}
 	
-	public function single_vacancy()
+	public function single_vacancy(): void
 	{
+	    
+	    wp_enqueue_Script('single-vacature-app', PP_VA_URL . '/assets/dist/app.react.js', [], false, true);
 		include_once PP_VA_DIR . '/src/views/single-sollicitatie.php';
 	}
 	

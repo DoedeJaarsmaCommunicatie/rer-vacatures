@@ -9,6 +9,7 @@ return array(
     'PropertyPeople\\Includes\\Models\\OpenVacature' => $baseDir . '/src/includes/models/OpenVacature.php',
     'PropertyPeople\\Includes\\Models\\Vacature' => $baseDir . '/src/includes/models/Vacature.php',
     'PropertyPeople\\Includes\\MultiSync' => $baseDir . '/src/includes/MultiSync.php',
+    'PropertyPeople\\Includes\\VacatureGetRoute' => $baseDir . '/src/includes/VacatureGetRoute.php',
     'PropertyPeople\\Includes\\VacatureMeta' => $baseDir . '/src/includes/VacatureMeta.php',
     'PropertyPeople\\Includes\\VacaturePostRoute' => $baseDir . '/src/includes/VacaturePostRoute.php',
     'PropertyPeople\\PropertyAdminPage' => $baseDir . '/src/PropertyAdminPage.php',

@@ -28,6 +28,7 @@ class ComposerStaticInit4171d83d116a2e53f6c27cb5ea393f5a
         'PropertyPeople\\Includes\\Models\\OpenVacature' => __DIR__ . '/../..' . '/src/includes/models/OpenVacature.php',
         'PropertyPeople\\Includes\\Models\\Vacature' => __DIR__ . '/../..' . '/src/includes/models/Vacature.php',
         'PropertyPeople\\Includes\\MultiSync' => __DIR__ . '/../..' . '/src/includes/MultiSync.php',
+        'PropertyPeople\\Includes\\VacatureGetRoute' => __DIR__ . '/../..' . '/src/includes/VacatureGetRoute.php',
         'PropertyPeople\\Includes\\VacatureMeta' => __DIR__ . '/../..' . '/src/includes/VacatureMeta.php',
         'PropertyPeople\\Includes\\VacaturePostRoute' => __DIR__ . '/../..' . '/src/includes/VacaturePostRoute.php',
         'PropertyPeople\\PropertyAdminPage' => __DIR__ . '/../..' . '/src/PropertyAdminPage.php',

@@ -31,6 +31,7 @@ abstract class CPT implements Type
             'public'                => $this->public(),
             'show_ui'               => $this->showInUi(),
             'show_in_menu'          => $this->showInMenu(),
+            'show_in_rest'          => $this->show_in_rest(),
             'menu_position'         => $this->menuPosition(),
             'show_in_admin_bar'     => $this->showInAdmin(),
             'show_in_nav_menus'     => $this->showInMenu(),
@@ -139,5 +140,9 @@ abstract class CPT implements Type
 	
 	public function supports() {
 		return false;
+    }
+    
+    protected function show_in_rest(): bool {
+        return true;
     }
 }

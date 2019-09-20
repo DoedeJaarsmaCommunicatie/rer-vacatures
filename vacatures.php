@@ -19,6 +19,8 @@ if (!defined('PP_VA_DIR')) {
 	define('PP_VA_DIR', plugin_dir_path(PP_VA_FILE));
 }
 
+defined('PP_VA_URL') || define('PP_VA_URL', plugin_dir_url(PP_VA_FILE));
+
 include_once PP_VA_DIR . 'vendor/autoload.php';
 
 $updateChecker = Puc_v4_Factory::buildUpdateChecker(

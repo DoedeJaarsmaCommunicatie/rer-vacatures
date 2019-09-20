@@ -3,6 +3,7 @@
 namespace PropertyPeople;
 
 use PropertyPeople\Includes\MultiSync;
+use PropertyPeople\Includes\VacatureGetRoute;
 use PropertyPeople\Includes\VacatureMeta;
 use PropertyPeople\Includes\VacaturePostRoute;
 use PropertyPeople\Vendor\Taxonomies\Branche;
@@ -91,13 +92,15 @@ class PropertyVacatures
 		new Branche();
 		
 		new VacaturePostRoute();
+		new VacatureGetRoute();
 		
 		if (is_admin()) {
 			new PropertyAdminPage();
 		}
 	}
 	
-	private function init_contact() {
+	private function init_contact(): void
+    {
 		new Contactpersoon();
 		new Opdrachtgevers();
 	}

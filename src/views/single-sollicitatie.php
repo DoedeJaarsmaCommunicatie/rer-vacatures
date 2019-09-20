@@ -39,7 +39,7 @@ $delete_args = [
     '_wpnonce'      => wp_create_nonce('delete_solicitation')
 ];
 
-$delete_link = esc_url(add_query_arg($delete_args, admin_url('admin.php?page=' . $_REQUEST['page'])));
+$delete_link = add_query_arg($delete_args, admin_url('admin.php?page=' . $_REQUEST['page']));
 
 $update_args = [
     'page'          => 'single_solicitor',
@@ -48,9 +48,18 @@ $update_args = [
     '_wpnonce'      => wp_create_nonce('toggle_solicitation_status'),
 ];
 
-$update_link = esc_url(add_query_arg($update_args, admin_url('admin.php')));
+$update_link = add_query_arg($update_args, admin_url('admin.php'));
 ?>
-	<div class="wrap">
+    <script>
+        window.update_link = '<?= $update_link ?>';
+        window.delete_link = '<?= $delete_link ?>';
+    </script>
+
+    <div class="wrap">
+        <div id="single-vacature-app"></div>
+    </div>
+
+	<div hidden class="wrap">
 		<h2><?php _e('Sollicitatie', 'ppmm'); ?></h2>
         <style>
             @media screen and (min-width: 414px) {
@@ -145,4 +154,3 @@ $update_link = esc_url(add_query_arg($update_args, admin_url('admin.php')));
 
 		</div>
 	</div>
-<?php

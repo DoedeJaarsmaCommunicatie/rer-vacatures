@@ -26,11 +26,16 @@ class VacaturePostRoute
 		
 		if (isset($_FILES['cv'])) {
 			$cv = $_FILES['cv'];
-			$uploadedCV = wp_handle_upload($cv, ['test_form' => false]);
-		}
-		
-		if ($uploadedCV && !isset($uploadedCV['error'])) {
-			$vacature->file = $uploadedCV['url'];
+            add_filter('upload_dir', [ $this, 'custom_upload_dir']);
+            $uploadedCV = wp_handle_upload($cv, ['test_form' => false]);
+            
+            if ($uploadedCV && !isset($uploadedCV['error'])) {
+                $month = date('m');
+                $year = date('Y');
+                $vacature->file = str_replace("/$year/$month", '', $uploadedCV['url']);
+            }
+            
+            remove_filter('upload_dir', [ $this, 'custom_upload_dir']);
 		}
 		
 		try {
@@ -83,12 +88,18 @@ class VacaturePostRoute
 		
 		if (isset($_FILES['cv'])) {
 			$cv = $_FILES['cv'];
+			add_filter('upload_dir', [ $this, 'custom_upload_dir']);
 			$uploadedCV = wp_handle_upload($cv, ['test_form' => false]);
+            
+            if ($uploadedCV && !isset($uploadedCV['error'])) {
+                $month = date('m');
+                $year = date('Y');
+                $openVacature->file = str_replace("/$year/$month", '', $uploadedCV['url']);
+            }
+			
+			remove_filter('upload_dir', [ $this, 'custom_upload_dir']);
 		}
 		
-		if ($uploadedCV && !isset($uploadedCV['error'])) {
-			$openVacature->file = $uploadedCV['url'];
-		}
 		
 		try {
 			$openVacature->save();
@@ -97,7 +108,7 @@ class VacaturePostRoute
 		}
 
 		wp_mail(
-			'solliciteren@realestaterecruiters.nl', 
+			'solliciteren@realestaterecruiters.nl',
 			'Nieuwe open sollicitatie',
 			'Er is een nieuwe open sollicitatie. Bekijk deze online op: https://realestaterecruiters.nl/wp-admin/admin.php?page=vacancy-overview',
 			[
@@ -132,5 +143,17 @@ class VacaturePostRoute
 		);
 	}
 	
+	
+	public function custom_upload_dir($dir_data) {
+	    $custom_dir = 'CV';
+	    
+	    return [
+            'path' => $dir_data[ 'basedir' ] . '/' . $custom_dir,
+            'url' => $dir_data[ 'url' ] . '/' . $custom_dir,
+            'subdir' => '/' . $custom_dir,
+            'basedir' => $dir_data[ 'error' ],
+            'error' => $dir_data[ 'error' ],
+        ];
+    }
 }
 

@@ -41,7 +41,15 @@ class VacaturePostRoute
 		try {
 			$vacature->save();
 		} catch (\Exception $exception) {
-			die($exception->getMessage());
+		    wp_mail(
+		        'support@doedejaarsma.nl',
+                'Problemen sollicitatie',
+                $exception->getMessage(),
+                [
+                    'From: Real Estate Recruiters <info@realestaterecruiters.nl>'
+                ]
+            );
+		    wp_safe_redirect(wp_get_referer());
 		}
 
 		wp_mail(
@@ -104,7 +112,15 @@ class VacaturePostRoute
 		try {
 			$openVacature->save();
 		} catch (\Exception $exception) {
-			die($exception->getMessage());
+            wp_mail(
+                'support@doedejaarsma.nl',
+                'Problemen sollicitatie',
+                $exception->getMessage()
+                [
+                    'From: Real Estate Recruiters <info@realestaterecruiters.nl>'
+                ]
+            );
+            wp_safe_redirect(wp_get_referer());
 		}
 
 		wp_mail(

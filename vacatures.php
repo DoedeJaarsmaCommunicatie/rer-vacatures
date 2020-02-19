@@ -2,8 +2,8 @@
 /*
 Plugin Name: Vacatures
 Description: Deze plugin voegt de nodige types en functies toe aan RealEstateRecruiters.
-Version: 1.2
-Author: Doede Jaarsma communicatie
+Version: 1.2.1
+Author: Doede Jaarsma communicatie B.V.
 Author URI: https://doedejaarsma.nl
 License: GPLv3
 textdomain: ppmm

@@ -4,29 +4,30 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49f51e015830131456c5c7994b92444d",
+    "content-hash": "4c039e396acede8bd4fd8dd578b508df",
     "packages": [
         {
             "name": "yahnis-elsts/plugin-update-checker",
-            "version": "v4.7",
+            "version": "v4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/YahnisElsts/plugin-update-checker.git",
-                "reference": "6da68b119277a400fad0ca6ec54f223b10bd8230"
+                "reference": "28f29c940cc22754aff85a99645e3c0a51c097e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/YahnisElsts/plugin-update-checker/zipball/6da68b119277a400fad0ca6ec54f223b10bd8230",
-                "reference": "6da68b119277a400fad0ca6ec54f223b10bd8230",
+                "url": "https://api.github.com/repos/YahnisElsts/plugin-update-checker/zipball/28f29c940cc22754aff85a99645e3c0a51c097e8",
+                "reference": "28f29c940cc22754aff85a99645e3c0a51c097e8",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "php": ">=5.2.0"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "plugin-update-checker.php"
+                    "load-v4p9.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -36,9 +37,9 @@
             "authors": [
                 {
                     "name": "Yahnis Elsts",
-                    "role": "Developer",
                     "email": "whiteshadow@w-shadow.com",
-                    "homepage": "http://w-shadow.com/"
+                    "homepage": "http://w-shadow.com/",
+                    "role": "Developer"
                 }
             ],
             "description": "A custom update checker for WordPress plugins and themes. Useful if you can't host your plugin in the official WP repository but still want it to support automatic updates.",
@@ -49,7 +50,7 @@
                 "theme updates",
                 "wordpress"
             ],
-            "time": "2019-07-05T18:39:53+00:00"
+            "time": "2020-02-07T11:07:19+00:00"
         }
     ],
     "packages-dev": [],

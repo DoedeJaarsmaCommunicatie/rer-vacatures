@@ -41,6 +41,15 @@ class PropertyAdminPage
 			[$this, 'open_soll_list']
 		);
 
+		add_submenu_page(
+			'vacancy-overview',
+            __('Single Open Solicitor', 'ppmm'),
+            '',
+            'manage_options',
+            'single-open-solicitor',
+            [$this, 'single_open_solicitation']
+		);
+
 		add_action("load-{$page_hook}", [$this, 'add_page_options']);
 	}
 
@@ -75,10 +84,14 @@ class PropertyAdminPage
 
 	public function single_vacancy(): void
 	{
-
 	    wp_enqueue_Script('single-vacature-app', PP_VA_URL . '/assets/dist/app.react.js', [], false, true);
 		include_once PP_VA_DIR . '/src/views/single-sollicitatie.php';
 	}
+
+	public function single_open_solicitation(): void
+    {
+        include_once PP_VA_DIR . '/src/views/single-open-sollicitatie.php';
+    }
 
 	public function open_soll_list()
 	{

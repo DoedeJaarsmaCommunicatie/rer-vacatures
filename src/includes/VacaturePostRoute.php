@@ -2,6 +2,7 @@
 namespace PropertyPeople\Includes;
 
 
+use Symfony\Component\HttpClient\HttpClient;
 use PropertyPeople\Includes\Models\OpenVacature;
 use PropertyPeople\Includes\Models\Vacature;
 
@@ -22,6 +23,24 @@ class VacaturePostRoute
 	{
 		$this->request = $_REQUEST;
 
+		$client = HttpClient::create();
+		$res = $client->request(
+			'POST',
+			'https://www.google.com/recaptcha/api/siteverify',
+			[
+				'body' => [
+					'secret' => '',
+					'response' => $_REQUEST['g-recaptcha-response'],
+				]
+			]
+		);
+
+		$content = $res->toArray();
+
+		if (!filter_var($content['success'], FILTER_VALIDATE_BOOLEAN)) {
+			wp_safe_redirect(wp_get_referer());
+			return;
+		}
 
 		if (strpos($_REQUEST['voornaam'], 'gutenmorgen') !== false) {
 			wp_safe_redirect(wp_get_referer());

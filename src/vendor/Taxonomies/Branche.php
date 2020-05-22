@@ -8,22 +8,22 @@ class Branche extends Taxonomy
 	{
 		return 'Branches';
 	}
-	
+
 	public function textDomain()
 	{
 		return 'ppmm';
 	}
-	
+
 	public function name()
 	{
 		return 'Branche';
 	}
-	
+
 	public function slug()
 	{
 		return 'branche';
 	}
-	
+
 	public function supports()
 	{
 		return [

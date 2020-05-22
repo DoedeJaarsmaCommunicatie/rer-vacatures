@@ -7,17 +7,17 @@ abstract class Taxonomy implements Tax
 	{
 		$this->action();
 	}
-	
+
 	public function action()
 	{
 		\add_action('init', [ $this, 'register' ], 10);
 	}
-	
+
 	public function register()
 	{
 		\register_taxonomy($this->slug(), $this->supports(), $this->args());
 	}
-	
+
 	public function labels(): array
 	{
 		return [
@@ -43,7 +43,7 @@ abstract class Taxonomy implements Tax
 			'items_list_navigation'      => __('Items list navigation', $this->textDomain()),
 		];
 	}
-	
+
 	final public function args(): array
 	{
 		return [
@@ -57,37 +57,37 @@ abstract class Taxonomy implements Tax
 			'show_in_rest'      => $this->showInRest(),
 		];
 	}
-	
+
 	public function public()
 	{
 		return true;
 	}
-	
+
 	public function hierarchical()
 	{
-		return false;
+		return true;
 	}
-	
+
 	public function showUi()
 	{
 		return true;
 	}
-	
+
 	public function showAdminColumn()
 	{
 		return true;
 	}
-	
+
 	public function showInNavMenus()
 	{
 		return true;
 	}
-	
+
 	public function showTagcloud()
 	{
 		return true;
 	}
-	
+
 	public function showInRest()
 	{
 		return true;

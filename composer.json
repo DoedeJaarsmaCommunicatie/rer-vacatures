@@ -8,8 +8,7 @@
         }
     ],
     "require": {
-        "symfony/http-client": "^5.0",
-        "yahnis-elsts/plugin-update-checker": "^4.7"
+        "yahnis-elsts/plugin-update-checker": "^4.9"
     },
     "autoload": {
         "psr-4": {

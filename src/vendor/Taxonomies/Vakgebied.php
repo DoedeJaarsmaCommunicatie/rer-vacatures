@@ -7,26 +7,32 @@ class Vakgebied extends Taxonomy
 	{
 		return 'Vakgebieden';
 	}
-	
+
 	public function textDomain()
 	{
 		return 'ppmm';
 	}
-	
+
 	public function name()
 	{
 		return 'Vakgebied';
 	}
-	
+
 	public function slug()
 	{
 		return 'vakgebied';
 	}
-	
+
 	public function supports()
 	{
 		return [
 			'vacature'
 		];
 	}
+
+	public function hierarchical()
+	{
+		return true;
+	}
+
 }
